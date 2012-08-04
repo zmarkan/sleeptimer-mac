@@ -1,0 +1,28 @@
+#!/bin/bash
+function startTimer {
+	MIN=$1
+	for (( i = $MIN * 60; i>=0; i--));
+	do
+		if [ $[$i%60] = 0 ]
+		then echo -ne "$[$i/60] minutes left\n"
+		fi
+		sleep 1;
+	done
+	
+	echo Good Night!
+	osascript -e 'tell application "Finder" to sleep'
+}
+          
+if [ -z "$1" ] 
+then
+	echo usage: $0 time to shutdown or "now"	
+else 
+	if [ "$1" = "now" ] 
+	then 
+		echo  Good Night!
+		osascript -e 'tell application "Finder" to sleep'	
+	fi
+fi
+startTimer $1
+
+
